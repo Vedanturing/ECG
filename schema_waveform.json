@@ -1,0 +1,501 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ECG Waveform Data Schema",
+  "description": "Unified schema for ECG waveform data across multiple formats and datasets",
+  "type": "object",
+  "required": ["sampling_rate", "format", "metadata"],
+  "properties": {
+    "lead_I": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Lead I ECG signal data",
+      "minItems": 1
+    },
+    "lead_II": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Lead II ECG signal data (most commonly used for analysis)",
+      "minItems": 1
+    },
+    "lead_III": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Lead III ECG signal data",
+      "minItems": 1
+    },
+    "lead_aVR": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Augmented vector right lead",
+      "minItems": 1
+    },
+    "lead_aVL": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Augmented vector left lead",
+      "minItems": 1
+    },
+    "lead_aVF": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Augmented vector foot lead",
+      "minItems": 1
+    },
+    "lead_V1": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V1",
+      "minItems": 1
+    },
+    "lead_V2": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V2",
+      "minItems": 1
+    },
+    "lead_V3": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V3",
+      "minItems": 1
+    },
+    "lead_V4": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V4",
+      "minItems": 1
+    },
+    "lead_V5": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V5",
+      "minItems": 1
+    },
+    "lead_V6": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Precordial lead V6",
+      "minItems": 1
+    },
+    "sampling_rate": {
+      "type": "integer",
+      "description": "Sampling frequency in Hz",
+      "minimum": 100,
+      "maximum": 10000,
+      "examples": [250, 500, 1000, 2000]
+    },
+    "format": {
+      "type": "string",
+      "description": "Original data format",
+      "enum": ["dat", "pdf", "image", "csv", "json", "npy", "edf", "wav"],
+      "examples": ["dat", "pdf", "image"]
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["subject_id"],
+      "properties": {
+        "subject_id": {
+          "type": "string",
+          "description": "Unique identifier for the subject/patient",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "examples": ["ptb_006", "mitbih_100", "stress_subject_001"]
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age of the subject in years",
+          "minimum": 0,
+          "maximum": 120,
+          "examples": [25, 45, 67]
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender of the subject",
+          "enum": ["M", "F", "O", "unknown"],
+          "examples": ["M", "F"]
+        },
+        "device": {
+          "type": "string",
+          "description": "ECG recording device used",
+          "examples": ["GE-Mac5000", "Philips-IntelliVue", "Synthetic"]
+        },
+        "recording_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time of recording",
+          "examples": ["2023-01-15T10:30:00Z"]
+        },
+        "duration_seconds": {
+          "type": "number",
+          "description": "Duration of the recording in seconds",
+          "minimum": 0,
+          "examples": [300.0, 600.0, 1800.0]
+        },
+        "stress_level": {
+          "type": "string",
+          "description": "Annotated stress level if available",
+          "enum": ["low", "medium", "high", "unknown"],
+          "examples": ["low", "medium", "high"]
+        },
+        "diagnosis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Clinical diagnoses if available",
+          "examples": [["Normal sinus rhythm"], ["Atrial fibrillation"], ["ST elevation"]]
+        },
+        "medications": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Medications the subject is taking",
+          "examples": [["Aspirin", "Metoprolol"], ["Warfarin"]]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Medical conditions of the subject",
+          "examples": [["Hypertension"], ["Diabetes", "Coronary artery disease"]]
+        },
+        "dataset_source": {
+          "type": "string",
+          "description": "Source dataset name",
+          "examples": ["mitbih", "ptb", "stress_drivers", "incart"]
+        },
+        "record_name": {
+          "type": "string",
+          "description": "Original record name from source dataset",
+          "examples": ["100", "ptb_006", "stress_subject_001"]
+        },
+        "signal_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names of available leads",
+          "examples": [["I", "II", "III"], ["II"], ["V1", "V2", "V3", "V4", "V5", "V6"]]
+        },
+        "num_leads": {
+          "type": "integer",
+          "description": "Number of leads in the recording",
+          "minimum": 1,
+          "maximum": 12,
+          "examples": [1, 2, 12]
+        },
+        "signal_length": {
+          "type": "integer",
+          "description": "Number of samples in the signal",
+          "minimum": 1,
+          "examples": [150000, 300000, 900000]
+        },
+        "units": {
+          "type": "string",
+          "description": "Units of the signal amplitude",
+          "enum": ["mV", "uV", "V", "arbitrary"],
+          "default": "mV",
+          "examples": ["mV", "uV"]
+        },
+        "gain": {
+          "type": "number",
+          "description": "Amplification factor applied to the signal",
+          "minimum": 0,
+          "examples": [1.0, 1000.0, 0.001]
+        },
+        "baseline": {
+          "type": "number",
+          "description": "Baseline value of the signal",
+          "examples": [0.0, 2048.0]
+        },
+        "resolution": {
+          "type": "number",
+          "description": "ADC resolution in bits",
+          "minimum": 8,
+          "maximum": 24,
+          "examples": [12, 16, 24]
+        },
+        "filter_settings": {
+          "type": "object",
+          "description": "Filter settings applied to the signal",
+          "properties": {
+            "low_pass": {
+              "type": "number",
+              "description": "Low-pass filter cutoff frequency in Hz",
+              "examples": [40.0, 100.0]
+            },
+            "high_pass": {
+              "type": "number",
+              "description": "High-pass filter cutoff frequency in Hz",
+              "examples": [0.5, 1.0]
+            },
+            "notch": {
+              "type": "number",
+              "description": "Notch filter frequency in Hz",
+              "examples": [50.0, 60.0]
+            }
+          }
+        },
+        "quality_metrics": {
+          "type": "object",
+          "description": "Signal quality assessment metrics",
+          "properties": {
+            "snr_db": {
+              "type": "number",
+              "description": "Signal-to-noise ratio in decibels",
+              "minimum": 0,
+              "examples": [25.5, 30.2]
+            },
+            "overall_quality_score": {
+              "type": "number",
+              "description": "Overall signal quality score (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.85, 0.92]
+            },
+            "flatline_segments": {
+              "type": "integer",
+              "description": "Number of flatline segments detected",
+              "minimum": 0,
+              "examples": [0, 2, 5]
+            },
+            "clipping_percentage": {
+              "type": "number",
+              "description": "Percentage of signal that is clipped",
+              "minimum": 0,
+              "maximum": 100,
+              "examples": [0.0, 2.5]
+            }
+          }
+        },
+        "hrv_features": {
+          "type": "object",
+          "description": "Heart Rate Variability features",
+          "properties": {
+            "mean_rr": {
+              "type": "number",
+              "description": "Mean RR interval in milliseconds",
+              "minimum": 0,
+              "examples": [800.5, 1000.2]
+            },
+            "rmssd": {
+              "type": "number",
+              "description": "Root Mean Square of Successive Differences in ms",
+              "minimum": 0,
+              "examples": [25.3, 45.7]
+            },
+            "sdnn": {
+              "type": "number",
+              "description": "Standard Deviation of NN intervals in ms",
+              "minimum": 0,
+              "examples": [35.2, 52.1]
+            },
+            "pnn50": {
+              "type": "number",
+              "description": "Percentage of NN50 in %",
+              "minimum": 0,
+              "maximum": 100,
+              "examples": [15.5, 25.3]
+            },
+            "lf_power": {
+              "type": "number",
+              "description": "Low frequency power in ms²",
+              "minimum": 0,
+              "examples": [450.2, 1200.5]
+            },
+            "hf_power": {
+              "type": "number",
+              "description": "High frequency power in ms²",
+              "minimum": 0,
+              "examples": [320.1, 850.3]
+            },
+            "lf_hf_ratio": {
+              "type": "number",
+              "description": "LF/HF ratio",
+              "minimum": 0,
+              "examples": [1.2, 2.5]
+            },
+            "heart_rate": {
+              "type": "number",
+              "description": "Average heart rate in BPM",
+              "minimum": 30,
+              "maximum": 200,
+              "examples": [65.2, 85.7]
+            }
+          }
+        },
+        "stress_classification": {
+          "type": "object",
+          "description": "Stress level classification scores",
+          "properties": {
+            "stress": {
+              "type": "number",
+              "description": "Stress-related deviation score (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.3, 0.7]
+            },
+            "machine": {
+              "type": "number",
+              "description": "Machine-related error score (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.1, 0.4]
+            },
+            "env": {
+              "type": "number",
+              "description": "Environmental interference score (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.2, 0.5]
+            }
+          }
+        },
+        "annotations": {
+          "type": "array",
+          "description": "Detailed annotations of events and abnormalities",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "number",
+                "description": "Time of the event in seconds",
+                "minimum": 0,
+                "examples": [12.5, 45.2]
+              },
+              "event": {
+                "type": "string",
+                "description": "Description of the event",
+                "examples": ["ST Depression", "R-peak", "Noise", "Flatline"]
+              },
+              "cause_label": {
+                "type": "object",
+                "description": "Causal classification of the event",
+                "properties": {
+                  "stress": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "machine": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "env": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              },
+              "confidence": {
+                "type": "number",
+                "description": "Confidence in the annotation (0-1)",
+                "minimum": 0,
+                "maximum": 1,
+                "examples": [0.8, 0.95]
+              }
+            }
+          }
+        }
+      }
+    },
+    "processing_info": {
+      "type": "object",
+      "description": "Information about data processing steps",
+      "properties": {
+        "processing_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the data was processed",
+          "examples": ["2023-12-01T15:30:00Z"]
+        },
+        "processing_version": {
+          "type": "string",
+          "description": "Version of the processing pipeline",
+          "examples": ["1.0.0", "2.1.3"]
+        },
+        "preprocessing_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of preprocessing steps applied",
+          "examples": [["baseline_correction", "noise_filtering", "r_peak_detection"]]
+        },
+        "quality_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Quality checks performed",
+          "examples": [["snr_check", "flatline_detection", "clipping_detection"]]
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "lead_II": [0.1, 0.2, 0.15, 0.3, 0.25, 0.1, 0.2, 0.15, 0.3, 0.25],
+      "sampling_rate": 500,
+      "format": "dat",
+      "metadata": {
+        "subject_id": "ptb_006",
+        "age": 56,
+        "gender": "M",
+        "device": "GE-Mac5000",
+        "dataset_source": "ptb",
+        "record_name": "ptb_006",
+        "signal_names": ["I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6"],
+        "num_leads": 12,
+        "signal_length": 150000,
+        "duration_seconds": 300.0,
+        "units": "mV",
+        "quality_metrics": {
+          "snr_db": 28.5,
+          "overall_quality_score": 0.92,
+          "flatline_segments": 0,
+          "clipping_percentage": 0.0
+        },
+        "hrv_features": {
+          "mean_rr": 850.2,
+          "rmssd": 35.7,
+          "heart_rate": 70.6,
+          "lf_hf_ratio": 1.8
+        },
+        "stress_classification": {
+          "stress": 0.3,
+          "machine": 0.1,
+          "env": 0.2
+        }
+      }
+    }
+  ]
+} 

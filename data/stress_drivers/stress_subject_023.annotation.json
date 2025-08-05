@@ -1,0 +1,74 @@
+{
+  "subject_id": "stress_subject_023",
+  "lead": "ECG",
+  "sampling_rate": 500,
+  "signal_length": 150000,
+  "duration_seconds": 300.0,
+  "r_peak_detection": {
+    "method": "biosppy",
+    "confidence": 0.016555555555555556,
+    "num_peaks": 298,
+    "expected_peaks": 18000.0
+  },
+  "hrv_features": {
+    "mean_rr": 1005.4410774410775,
+    "std_rr": 54.556652631130774,
+    "rmssd": 75.97972702582524,
+    "nn50": 144,
+    "pnn50": 48.484848484848484,
+    "vlf_power": 0.0,
+    "lf_power": 0.0,
+    "hf_power": 0.0,
+    "total_power": 0.0,
+    "lf_hf_ratio": 0.0,
+    "lf_nu": 0.0,
+    "hf_nu": 0.0,
+    "heart_rate": 59.67530206017092
+  },
+  "signal_quality": {
+    "flatlines": [],
+    "clipping": [
+      {
+        "max_amplitude": 1.530327111974175,
+        "min_amplitude": -0.04216470371537369,
+        "clipping_percentage": 0.6973333333333334
+      }
+    ],
+    "noise": [],
+    "baseline_wander": [],
+    "overall_quality_score": 0.8
+  },
+  "stress_classification": {
+    "stress": 0.0,
+    "machine": 0.0,
+    "env": 0.0
+  },
+  "annotations": [
+    {
+      "timestamp": 0.0,
+      "event": "Amplitude Clipping",
+      "cause_label": {
+        "stress": 0.0,
+        "machine": 0.9,
+        "env": 0.1
+      },
+      "confidence": 0.8,
+      "clipping_percentage": 0.6973333333333334
+    }
+  ],
+  "metadata": {
+    "sampling_rate": 500,
+    "signal_names": [
+      "ECG"
+    ],
+    "record_name": "stress_subject_023",
+    "stress_level": "low",
+    "subject_id": "stress_subject_023",
+    "metadata": {
+      "age": 53,
+      "gender": "F",
+      "driving_condition": "highway",
+      "time_of_day": "afternoon"
+    }
+  }
+}

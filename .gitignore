@@ -1,0 +1,404 @@
+# ECG Intelligence AI - .gitignore
+# ======================================
+
+# Python
+# ======================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+# ======================================
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Data Files
+# ======================================
+# Large data files and datasets
+data/*.zip
+data/*.tar.gz
+data/*.tar
+data/*.dat
+data/*.npy
+data/*.npz
+data/*.csv
+data/*.json
+data/*.h5
+data/*.hdf5
+data/*.mat
+data/*.edf
+data/*.bdf
+
+# Keep only summary files and small metadata
+!data/*summary.json
+!data/overall_summary.json
+!data/*/summary.json
+
+# Keep schema files
+!schema_waveform.json
+
+# Keep sample data for documentation (small files only)
+!data/*/sample_*.json
+!data/*/example_*.json
+
+# Logs
+# ======================================
+*.log
+logs/
+log/
+dataset_fetch.log
+stress_annotation.log
+
+# Temporary files
+# ======================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# OS generated files
+# ======================================
+# Windows
+*.lnk
+*.exe
+*.msi
+*.dll
+*.pyd
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Linux
+*~
+
+# Model files and checkpoints
+# ======================================
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.pb
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+models/
+checkpoints/
+weights/
+
+# Configuration files with secrets
+# ======================================
+config.ini
+secrets.json
+credentials.json
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Documentation builds
+# ======================================
+docs/_build/
+docs/build/
+site/
+
+# IDE and Editor files
+# ======================================
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Brackets
+.brackets.json
+
+# WebStorm
+.idea/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Backup files
+# ======================================
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+
+# Archive files
+# ======================================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ECG-specific files
+# ======================================
+# Large annotation files (keep only summaries)
+data/*/stress_subject_*.annotation.json
+data/*/stress_subject_*.json
+
+# Keep only a few sample files for documentation
+!data/*/stress_subject_000.annotation.json
+!data/*/stress_subject_000.json
+!data/*/stress_subject_001.annotation.json
+!data/*/stress_subject_001.json
+
+# Keep overall analysis summaries
+!data/*/stress_drivers_stress_analysis.json
+
+# Exclude large raw data files
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Exclude database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Exclude cache directories
+.cache/
+cache/
+__pycache__/
+
+# Keep README and documentation
+!README.md
+!*.md
+!docs/
+!*.rst
+
+# Keep configuration files
+!requirements.txt
+!setup.py
+!pyproject.toml
+!tox.ini
+!.flake8
+!.pylintrc
+!mypy.ini
+
+# Keep source code
+!*.py
+!*.js
+!*.ts
+!*.html
+!*.css
+!*.scss
+
+# Keep schema and configuration
+!*.json
+!*.yaml
+!*.yml
+!*.toml
+!*.ini
+!*.cfg
+
+# Exclude but keep structure
+!data/
+!data/*/
+!data/*/*/ 
