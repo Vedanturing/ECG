@@ -160,6 +160,11 @@ data/*.mat
 data/*.edf
 data/*.bdf
 
+# Exclude downloaded dataset directories
+data/mitbih/
+data/ptb/
+data/incart/
+
 # Keep only summary files and small metadata
 !data/*summary.json
 !data/overall_summary.json
@@ -171,6 +176,12 @@ data/*.bdf
 # Keep sample data for documentation (small files only)
 !data/*/sample_*.json
 !data/*/example_*.json
+
+# Keep only specific stress drivers files for documentation
+!data/stress_drivers/stress_subject_000.json
+!data/stress_drivers/stress_subject_001.json
+!data/stress_drivers/stress_drivers_stress_analysis.json
+!data/stress_drivers/summary.json
 
 # Logs
 # ======================================
@@ -336,7 +347,12 @@ out/
 
 # ECG-specific files
 # ======================================
-# Large annotation files (keep only summaries)
+# Exclude all downloaded dataset files
+data/mitbih/
+data/ptb/
+data/incart/
+
+# Exclude large annotation files (keep only summaries)
 data/*/stress_subject_*.annotation.json
 data/*/stress_subject_*.json
 
@@ -398,7 +414,7 @@ __pycache__/
 !*.ini
 !*.cfg
 
-# Exclude but keep structure
+# Keep data directory structure but exclude content
 !data/
 !data/*/
 !data/*/*/ 

@@ -4,27 +4,27 @@
     "mitbih": {
       "description": "MIT-BIH Arrhythmia Database",
       "format": "dat",
-      "total_records": 0,
-      "status": "failed"
+      "total_records": 71,
+      "status": "completed"
     },
     "ptb": {
       "description": "PTB Diagnostic ECG Database",
       "format": "dat",
       "total_records": 0,
-      "status": "failed"
+      "status": "completed"
     },
     "incart": {
       "description": "INCART 12-lead Arrhythmia Database",
       "format": "dat",
-      "total_records": 0,
-      "status": "failed"
+      "total_records": 75,
+      "status": "completed"
     },
     "stress_drivers": {
       "description": "Stress Recognition in Drivers (Synthetic)",
-      "format": "json",
-      "total_records": 50,
-      "status": "success"
+      "format": "csv",
+      "total_records": 0,
+      "status": "failed"
     }
   },
-  "collection_timestamp": "2025-08-05T13:44:28.304249"
+  "collection_timestamp": "2025-08-07T11:39:39.945439"
 }

@@ -48,19 +48,19 @@ class ECGDatasetFetcher:
         # Dataset configurations
         self.datasets = {
             'mitbih': {
-                'url': 'https://physionet.org/files/mitdb/1.0.0/mitdb-1.0.0.zip',
+                'url': 'https://physionet.org/content/mitdb/get-zip/1.0.0/',
                 'local_dir': self.data_dir / 'mitbih',
                 'format': 'dat',
                 'description': 'MIT-BIH Arrhythmia Database'
             },
             'ptb': {
-                'url': 'https://physionet.org/files/ptbdb/1.0.0/ptbdb-1.0.0.zip',
+                'url': 'https://physionet.org/content/ptbdb/get-zip/1.0.0/',
                 'local_dir': self.data_dir / 'ptb',
                 'format': 'dat',
                 'description': 'PTB Diagnostic ECG Database'
             },
             'incart': {
-                'url': 'https://physionet.org/files/incartdb/1.0.0/incartdb-1.0.0.zip',
+                'url': 'https://physionet.org/content/incartdb/get-zip/1.0.0/',
                 'local_dir': self.data_dir / 'incart',
                 'format': 'dat',
                 'description': 'INCART 12-lead Arrhythmia Database'
@@ -86,8 +86,14 @@ class ECGDatasetFetcher:
             # Create directory if it doesn't exist
             local_path.parent.mkdir(parents=True, exist_ok=True)
             
+            # For PhysioNet URLs, we need to follow redirects
+            session = requests.Session()
+            session.headers.update({
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            })
+            
             # Download with progress bar
-            response = requests.get(url, stream=True)
+            response = session.get(url, stream=True, allow_redirects=True)
             response.raise_for_status()
             
             total_size = int(response.headers.get('content-length', 0))
