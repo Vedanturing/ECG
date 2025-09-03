@@ -352,15 +352,13 @@ data/mitbih/
 data/ptb/
 data/incart/
 
-# Exclude large annotation files (keep only summaries)
-data/*/stress_subject_*.annotation.json
-data/*/stress_subject_*.json
+# Exclude all stress driver annotation files (they are large and generated)
+data/stress_drivers/stress_subject_*.annotation.json
+data/stress_drivers/stress_subject_*.json
 
-# Keep only a few sample files for documentation
-!data/*/stress_subject_000.annotation.json
-!data/*/stress_subject_000.json
-!data/*/stress_subject_001.annotation.json
-!data/*/stress_subject_001.json
+# Keep only summary files for documentation
+!data/stress_drivers/summary.json
+!data/stress_drivers/stress_drivers_stress_analysis.json
 
 # Keep overall analysis summaries
 !data/*/stress_drivers_stress_analysis.json
@@ -418,3 +416,35 @@ __pycache__/
 !data/
 !data/*/
 !data/*/*/ 
+
+# Project-specific outputs and artifacts
+# ======================================
+# Logs
+ecg_parser.log
+
+# Training/evaluation outputs
+training_output/
+evaluation_results/
+ecg_training_results/
+trained_models/
+baseline_models/
+tensorboard/
+plots/
+test_evaluation/
+
+# Specific training artifacts
+ecg_training_results/trained_models/
+ecg_training_results/evaluation_results/
+ecg_training_results/logs/
+ecg_training_results/plots/
+ecg_training_results/training_output/
+
+# Temporary and processed data
+processed_ecg/
+sample_data/
+temp/
+temp_extracted_image_*.png
+
+# Local notebooks and reports (if any)
+*.ipynb
+*.rpt
